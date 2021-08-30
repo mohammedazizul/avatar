@@ -11,8 +11,8 @@ const DynamicBar = (props) => {
   data.map((item) =>
     (function () {
       if (item.value !== null) {
-        year.push(item.date);
-        value.push(item.value);
+        year.unshift(item.date);
+        value.unshift(item.value);
       }
     })()
   );

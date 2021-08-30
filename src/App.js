@@ -1,14 +1,15 @@
+import { Container } from "react-bootstrap";
 import "./App.css";
 import Dynamic from "./components/Dynamic/Dynamic";
 import NavBar from "./components/NavBar/NavBar";
 
 function App() {
   return (
-    <div>
+    <div className="App">
       <NavBar />
-      <div className="App">
+      <Container>
         <Dynamic />
-      </div>
+      </Container>
     </div>
   );
 }

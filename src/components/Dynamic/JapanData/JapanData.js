@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Alert, Button, Col, Container, Row, Table } from "react-bootstrap";
+import { Button, Col, Container, Row, Table } from "react-bootstrap";
 import DynamicBar from "../DynamicBar/DynamicBar";
 import DynamicTable from "../DynamicTable/DynamicTable";
 
@@ -16,7 +16,7 @@ const JapanData = () => {
       .then((res) => res.json())
       .then(
         (result) => {
-          console.log("japan", result[1]);
+          // console.log("japan", result[1]);
           setIsLoaded(true);
           setMyData(result[1]);
         },
@@ -32,24 +32,30 @@ const JapanData = () => {
       <p></p>
       <Row>
         <Col sm>
-          <Button onClick={() => setShowTable(!showTable)}>
-            JAPAN data in Tabular Format
-          </Button>
-        </Col>
-        <p></p>
-        <Col sm>
-          <Button onClick={() => setShowBar(!showBar)}>
-            JAPAN data in Bar Chart
-          </Button>
+          <Container>
+            <Row>
+              <img
+                className="flagImage"
+                src="https://lipis.github.io/flag-icon-css/flags/4x3/jp.svg"
+                alt="Japan Flag"
+              />
+            </Row>
+            <Row>
+              <Button className="mt-1" onClick={() => setShowTable(!showTable)}>
+                Tabular Format
+              </Button>
+            </Row>
+            <Row>
+              <Button className="mt-1" onClick={() => setShowBar(!showBar)}>
+                Bar Chart
+              </Button>
+            </Row>
+          </Container>
         </Col>
       </Row>
       {showTable && (
         <Container>
           <p></p>
-          <Alert variant="success" style={{ color: "black" }}>
-            Mortality caused by road traffic injury (per 100,000 population) in
-            Malaysia
-          </Alert>
           <Table responsive>
             <thead>
               <tr>
@@ -71,10 +77,6 @@ const JapanData = () => {
       {showBar && (
         <Container>
           <p></p>
-          <Alert variant="success" style={{ color: "black" }}>
-            Mortality caused by road traffic injury (per 100,000 population) in
-            Malaysia
-          </Alert>
           <DynamicBar key={myData.date} myData={myData} />
         </Container>
       )}

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { Alert, Button, Col, Container, Row, Table } from "react-bootstrap";
+import { Button, Col, Container, Row, Table } from "react-bootstrap";
 import DynamicBar from "../DynamicBar/DynamicBar";
 import DynamicTable from "../DynamicTable/DynamicTable";
 
@@ -35,26 +35,34 @@ const MalaysiaData = () => {
         <p></p>
         <Row>
           <Col sm>
-            <Button onClick={() => setShowTable(!showTable)}>
-              MALAYSIA data in Tabular Format
-            </Button>
-          </Col>
-          <p></p>
-          <Col sm>
-            <Button onClick={() => setShowBar(!showBar)}>
-              MALAYSIA data in Bar Chart
-            </Button>
+            <Container>
+              <Row>
+                <img
+                  className="flagImage"
+                  src="https://lipis.github.io/flag-icon-css/flags/4x3/my.svg"
+                  alt="Malaysia Flag"
+                />
+              </Row>
+              <Row>
+                <Button
+                  className="mt-1"
+                  onClick={() => setShowTable(!showTable)}
+                >
+                  Tabular Format
+                </Button>
+              </Row>
+              <Row>
+                <Button className="mt-1" onClick={() => setShowBar(!showBar)}>
+                  Bar Chart
+                </Button>
+              </Row>
+            </Container>
           </Col>
         </Row>
       </Container>
 
       {showTable && (
         <Container>
-          <p></p>
-          <Alert variant="success" style={{ color: "black" }}>
-            Mortality caused by road traffic injury (per 100,000 population) in
-            Malaysia
-          </Alert>
           <Table responsive>
             <thead>
               <tr>
@@ -75,11 +83,6 @@ const MalaysiaData = () => {
       )}
       {showBar && (
         <Container>
-          <p></p>
-          <Alert variant="success" style={{ color: "black" }}>
-            Mortality caused by road traffic injury (per 100,000 population) in
-            Malaysia
-          </Alert>
           <DynamicBar key={myData.date} myData={myData} />
         </Container>
       )}
