@@ -3,6 +3,7 @@ import { Bar } from "react-chartjs-2";
 
 const DynamicBar = (props) => {
   const data = props.myData;
+  const country = data[0].country.value;
   let year = [];
   let value = [];
 
@@ -23,8 +24,7 @@ const DynamicBar = (props) => {
     labels: year,
     datasets: [
       {
-        label:
-          "Mortality caused by road traffic injury (per 100,000 population) in Malaysia",
+        label: `Mortality caused by road traffic injury (per 100,000 population) ${country}`,
         backgroundColor: "rgba(75,192,192,1)",
         borderColor: "rgba(0,0,0,1)",
         borderWidth: 2,
