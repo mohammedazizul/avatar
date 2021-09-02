@@ -29,6 +29,7 @@
 }
 
 /* custom */
+/* https://colorhunt.co/palette/0820322c394b334756ff4c29 */
 .flagImage {
   width: 100%;
   height: 180px;
@@ -45,12 +46,30 @@
 .sideBarMenu {
   padding: 10px;
   width: 10%;
-  background: rgb(33, 37, 41);
+  background: #082032;
 }
 
 .sideBarUl {
   list-style-type: none;
   padding: 0;
+}
+
+.sideBarUl li {
+  list-style: none;
+  padding: 14px 25px;
+  margin: 5px;
+  border-bottom: 1px solid #ff4c29;
+}
+
+.sideBarUl li:hover {
+  border: 1px solid #ff4c29;
+  border-radius: 10px;
+  background-color: #ff4c29;
+}
+
+.sideBarUl li a {
+  text-decoration: none;
+  color: #ffff;
 }
 
 .mainContent {
@@ -59,6 +78,8 @@
 }
 
 /* responsive */
+
+/* for mobile */
 @media only screen and (max-width: 600px) {
   .homeDiv {
     display: block;
@@ -66,7 +87,19 @@
   .sideBarMenu {
     width: 100%;
   }
+  .sideBarUl li {
+    list-style: none;
+    padding: 5px 8px;
+    margin: 2px;
+    border-bottom: 1px solid #ff4c29;
+  }
   .mainContent {
     text-align: -webkit-center;
+  }
+}
+/* for tablet */
+@media only screen and (min-width: 600px) {
+  .sideBarMenu {
+    width: 20%;
   }
 }

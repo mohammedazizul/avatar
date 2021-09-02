@@ -16,7 +16,7 @@ const JapanData = () => {
       .then((res) => res.json())
       .then(
         (result) => {
-          // console.log("japan", result[1]);
+          console.log("japan", result[1]);
           setIsLoaded(true);
           setMyData(result[1]);
         },
@@ -80,9 +80,6 @@ const JapanData = () => {
           <DynamicBar key={myData.date} myData={myData} />
         </Container>
       )}
-      {/* {myData.map((dt) => (
-        <p>h</p>
-      ))} */}
     </Container>
   );
 };

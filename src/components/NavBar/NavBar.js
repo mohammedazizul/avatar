@@ -3,9 +3,15 @@ import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 
 const NavBar = () => {
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar
+      collapseOnSelect
+      expand="lg"
+      bg=""
+      variant=""
+      style={{ backgroundColor: "#082032" }}
+    >
       <Container>
-        <Navbar.Brand href="#home">avatar</Navbar.Brand>
+        <Navbar.Brand href="/home">avatar</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">

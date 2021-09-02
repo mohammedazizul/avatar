@@ -2,7 +2,7 @@ import React from "react";
 
 const DynamicTable = (props) => {
   const { date, value } = props.data;
-  // console.log(props.data.date);
+  console.log(props.data.date);
 
   return (
     <tr>
