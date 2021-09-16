@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Col, Container, Row, Table } from "react-bootstrap";
+import { DynamicDataContext } from "../Dynamic";
 import DynamicBar from "../DynamicBar/DynamicBar";
 import DynamicTable from "../DynamicTable/DynamicTable";
 
@@ -10,13 +11,14 @@ const JapanData = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [showTable, setShowTable] = useState(false);
   const [showBar, setShowBar] = useState(false);
+  const dynamicData = useContext(DynamicDataContext);
 
   useEffect(() => {
     fetch(URLmy)
       .then((res) => res.json())
       .then(
         (result) => {
-          console.log("japan", result[1]);
+          // console.log("japan", result[1]);
           setIsLoaded(true);
           setMyData(result[1]);
         },
@@ -26,6 +28,9 @@ const JapanData = () => {
         }
       );
   }, [URLmy, errors]);
+
+  dynamicData.japan = myData;
+
   return (
     <Container>
       {!isLoaded && <h2>Loading . . .</h2>}

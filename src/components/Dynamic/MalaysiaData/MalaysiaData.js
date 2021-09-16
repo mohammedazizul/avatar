@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import { Button, Col, Container, Row, Table } from "react-bootstrap";
+import { DynamicDataContext } from "../Dynamic";
 import DynamicBar from "../DynamicBar/DynamicBar";
 import DynamicTable from "../DynamicTable/DynamicTable";
 
@@ -11,6 +12,8 @@ const MalaysiaData = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [showTable, setShowTable] = useState(false);
   const [showBar, setShowBar] = useState(false);
+  const dynamicData = useContext(DynamicDataContext);
+  // console.log(dynamicData);
 
   useEffect(() => {
     fetch(URLmy)
@@ -27,6 +30,8 @@ const MalaysiaData = () => {
         }
       );
   }, [URLmy, errors]);
+
+  dynamicData.malaysia = myData;
 
   return (
     <div>

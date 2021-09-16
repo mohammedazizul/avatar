@@ -3,6 +3,8 @@ import { Badge } from "react-bootstrap";
 import { Link, Route, Switch } from "react-router-dom";
 import Dynamic from "../Dynamic/Dynamic";
 import Home from "../Home/Home";
+import MixedChart from "../MixedChart/MixedChart";
+import TestCSV from "../TestCSV/TestCSV";
 
 const Routing = () => {
   const routes = [
@@ -28,6 +30,16 @@ const Routing = () => {
       sidebar: () => <Badge>OTHERS!</Badge>,
       main: () => <h2>others</h2>,
     },
+    {
+      path: "/test-csv-data",
+      sidebar: () => <Badge>Test csv Data</Badge>,
+      main: () => <TestCSV />,
+    },
+    {
+      path: "/mixed-chart",
+      sidebar: () => <Badge>Mixed Chart</Badge>,
+      main: () => <MixedChart />,
+    },
   ];
   return (
     <div className="homeDiv">
@@ -41,6 +53,12 @@ const Routing = () => {
           </li>
           <li>
             <Link to="/others">Others</Link>
+          </li>
+          <li>
+            <Link to="/test-csv-data">Test csv Data</Link>
+          </li>
+          <li>
+            <Link to="/mixed-chart">Mixed Chart</Link>
           </li>
         </ul>
 
