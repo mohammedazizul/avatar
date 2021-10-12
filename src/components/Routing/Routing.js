@@ -1,6 +1,7 @@
 import React from "react";
 import { Badge } from "react-bootstrap";
 import { Link, Route, Switch } from "react-router-dom";
+import About from "../About/About";
 import Dynamic from "../Dynamic/Dynamic";
 import Home from "../Home/Home";
 import MixedChart from "../MixedChart/MixedChart";
@@ -39,6 +40,11 @@ const Routing = () => {
       path: "/mixed-chart",
       sidebar: () => <Badge>Mixed Chart</Badge>,
       main: () => <MixedChart />,
+    },
+    {
+      path: "/about",
+      sidebar: () => <Badge>About</Badge>,
+      main: () => <About />,
     },
   ];
   return (

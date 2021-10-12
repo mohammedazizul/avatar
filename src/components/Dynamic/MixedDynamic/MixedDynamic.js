@@ -1,9 +1,10 @@
-import { Button, Container } from "react-bootstrap";
+import { Badge, Button, Container } from "react-bootstrap";
 import React, { useContext, useState } from "react";
 import { Bar } from "react-chartjs-2";
 import { DynamicDataContext } from "../Dynamic";
 
 const MixedDynamic = () => {
+  const errorText = "Something is wrong, Please try again later.";
   const [showMixedData, setShowMixedData] = useState(false);
   const dynamicData = useContext(DynamicDataContext);
   //   console.log("dynamicData", dynamicData.japan);
@@ -76,7 +77,16 @@ const MixedDynamic = () => {
       <Button className="mt-1" onClick={() => setShowMixedData(!showMixedData)}>
         Compare Malaysia and Japan
       </Button>
-      {showMixedData && <Bar data={data}></Bar>}
+
+      {showMixedData && (
+        <Container>
+          {data ? (
+            <Badge bg="danger">{errorText}</Badge>
+          ) : (
+            <Bar data={data}></Bar>
+          )}
+        </Container>
+      )}
     </Container>
   );
 };

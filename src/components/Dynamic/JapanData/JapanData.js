@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Button, Col, Container, Row, Table } from "react-bootstrap";
+import { Badge, Button, Col, Container, Row, Table } from "react-bootstrap";
 import { DynamicDataContext } from "../Dynamic";
 import DynamicBar from "../DynamicBar/DynamicBar";
 import DynamicTable from "../DynamicTable/DynamicTable";
 
 const JapanData = () => {
   const URLmy = `https://api.worldbank.org/v2/country/jp/indicator/SH.STA.TRAF.P5?date2010:2019&format=json`;
+  const errorText = "Something is wrong, Please try again later.";
+  const errorFetch = "Sorry, unable to fetch data from the service.";
   const [myData, setMyData] = useState([]);
   const [errors, setErrors] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -15,25 +17,31 @@ const JapanData = () => {
 
   useEffect(() => {
     fetch(URLmy)
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          // console.log("japan", result[1]);
-          setIsLoaded(true);
-          setMyData(result[1]);
-        },
-        (error) => {
-          setErrors(error);
-          console.log(errors);
+      .then((res) => {
+        if (res.ok) {
+          return res;
+        } else {
+          throw new Error("ERROR with Fetch Operation");
         }
-      );
-  }, [URLmy, errors]);
+      })
+      .then((res) => res.json())
+      .then((result) => {
+        // console.log(result[1]);
+        setIsLoaded(true);
+        setMyData(result[1]);
+      })
+      .catch((error) => {
+        setErrors(error);
+        // alert();
+        console.log("ERROR with Fetch Operation:", errors);
+      });
+  }, [URLmy]);
 
   dynamicData.japan = myData;
 
   return (
     <Container>
-      {!isLoaded && <h2>Loading . . .</h2>}
+      {!isLoaded && <Badge bg="warning">{errorFetch}</Badge>}
       <p></p>
       <Row>
         <Col sm>
@@ -60,29 +68,35 @@ const JapanData = () => {
       </Row>
       {showTable && (
         <Container>
-          <p></p>
-          <Table responsive>
-            <thead>
-              <tr>
-                <th>Year</th>
-                <th>
-                  Mortality caused by road traffic injury (per 100,000
-                  population)
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {myData.map((data) => (
-                <DynamicTable key={data.date} data={data} />
-              ))}
-            </tbody>
-          </Table>
+          {errors ? (
+            <Badge bg="danger">{errorText}</Badge>
+          ) : (
+            <Table responsive>
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>
+                    Mortality caused by road traffic injury (per 100,000
+                    population)
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {myData.map((data) => (
+                  <DynamicTable key={data.date} data={data} />
+                ))}
+              </tbody>
+            </Table>
+          )}
         </Container>
       )}
       {showBar && (
         <Container>
-          <p></p>
-          <DynamicBar key={myData.date} myData={myData} />
+          {errors ? (
+            <Badge bg="danger">{errorText}</Badge>
+          ) : (
+            <DynamicBar key={myData.date} myData={myData} />
+          )}
         </Container>
       )}
     </Container>

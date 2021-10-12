@@ -1,0 +1,27 @@
+.infoCard {
+  width: 100%;
+}
+.divCardName {
+  height: 60px;
+}
+.majorDiv {
+  height: 30px;
+}
+.majorStyle {
+  color: gray;
+  border-bottom: 1px solid gray;
+  padding-bottom: 5px;
+}
+/* for mobile */
+@media only screen and (max-width: 1024px) {
+  .infoCard {
+    width: 70%;
+    margin-top: 15px;
+  }
+  .divCardName {
+    height: 30px;
+  }
+  .majorDiv {
+    height: 30px;
+  }
+}
